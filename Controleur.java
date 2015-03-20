@@ -9,15 +9,38 @@ public class Controleur {
 	public Controleur(Mediatheque mediatheque){
 		this.mediatheque=mediatheque;
 	}
-	public void ajouterDocument(String titre, ArrayList<String> auteurs, Date dateParution) {
-		
+	public void ajouterFilm(String titre, ArrayList<String> auteur, Date dateParution, GenreFilm genre  ) {
+		int ref =100000+mediatheque.getDocuments().size();
+		Films film = new Films(titre,auteur,dateParution,genre);
+		mediatheque.addDocument(film);
+		film.setRéférence(ref);
 	}
-
+	public void ajouterMusique(String titre, ArrayList<String> auteur, Date dateParution, GenreMusical genre  ) {
+		int ref =200000+mediatheque.getDocuments().size();
+		Musique musique = new Musique(titre,auteur,dateParution,genre);
+		mediatheque.addDocument(musique);
+		musique.setRéférence(ref);
+	}
+	public void ajouterLivre(String titre, ArrayList<String> auteur, Date dateParution, GenreLitteraire genre, int numISBN  ) {
+		int ref =300000+mediatheque.getDocuments().size();
+		Livre livre = new Livre(titre,auteur,dateParution,numISBN,genre);
+		mediatheque.addDocument(livre);
+		livre.setRéférence(ref);
+	}
+	public void ajouterLogiciel(String titre, ArrayList<String> auteur, Date dateParution, GenreLogiciel genre  ) {
+		int ref =400000+mediatheque.getDocuments().size();
+		Logiciel logiciel = new Logiciel(titre,auteur,dateParution,genre);
+		mediatheque.addDocument(logiciel);
+		logiciel.setRéférence(ref);
+	}
+	
+	
+///////////////////////// TEMPORAIRE ////////////////////////////
 	public void supprimerDocument(int ref) {
 		// TODO - implement Controleur.supprimerDocument
 		throw new UnsupportedOperationException();
 	}
-
+////////////////////////////////////////////////////////////////
 
 	public void emprunterDocument(int ref, int numAbonne) {
 		Document doc = mediatheque.getDocuments().get(ref);
@@ -48,51 +71,18 @@ public class Controleur {
 		if (doc==null){
 			System.out.println("Ce document n'est pas référencié.");
 		} else {
-			
+			if (doc.getEmprunt()==null){
+				System.out.println("Ce document n'est pas emprunté.");
+			} else {
+				doc.getEmprunt().getAbo().setEmprunts(null);
 				doc.getEmprunt().setAbo(null);
 				doc.setEmprunt(null);
-				
-				///////////////////////////////////////////////////////////
-				/////////////////////// A FINIR ///////////////////////////
-				///////////////////////////////////////////////////////////
-				
-			
+			}
 		}	
 	}
-/*	
-	public Document findDoc(int ref){
-		boolean trouve = false;
-		int i = 0;
-		while (!trouve){
-			if(mediatheque.getDocuments().get(i).getRéférence()==ref){
-				trouve=true;
-			}
-			i++;
-		}
-		if (trouve){
-			return mediatheque.getDocuments().get(i-1);
-		} else {
-			return null;
-		}
-	}
-	
-	public Abonné findAbo(int numAbo){
-		boolean trouve = false;
-		int i = 0;
-		while (!trouve){
-			if(mediatheque.getAbonnes().get(i).getNumAbonne()==numAbo){
-				trouve=true;
-			}
-			i++;
-		}
-		if (trouve){
-			return mediatheque.getAbonnes().get(i-1);
-		} else {
-			return null;
-		}
-	}
-*/
+
 	public void inscrireAbonnee(String nom, String prenom) {
+		mediatheque.addAbonne(new Abonné(nom, prenom));
 		
 	}
 	public Mediatheque getMediatheque() {

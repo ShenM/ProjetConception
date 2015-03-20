@@ -17,5 +17,10 @@ public class Musique extends Document {
 	public void setGenre(GenreMusical genre) {
 		this.genre = genre;
 	}
+	
+	@Override
+	public int getDureeEmprunt() {
+		return 5;
+	}
 
 }
