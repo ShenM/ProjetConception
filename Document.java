@@ -10,15 +10,19 @@ public abstract class Document {
 	private int référence;
 	
 	
+	
+	
 	public Document(String titre, ArrayList<String> auteur,
 			Date dateParution) {
-
 		this.titre = titre;
 		this.auteur = auteur;
 		this.dateParution = dateParution;
 
 	}
-
+	
+	public abstract int getDureeEmprunt();
+	
+	
 	public String getTitre() {
 		return titre;
 	}

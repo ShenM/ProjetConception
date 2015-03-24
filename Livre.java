@@ -25,5 +25,10 @@ public class Livre extends Document {
 		this.genre = genre;
 	}
 	
+	@Override
+	public int getDureeEmprunt() {
+		return 5;
+	}
+	
 
 }

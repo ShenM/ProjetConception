@@ -17,6 +17,11 @@ public class Films extends Document {
 	public void setGenre(GenreFilm genre) {
 		this.genre = genre;
 	}
+	
+	@Override
+	public int getDureeEmprunt() {
+		return 5;
+	}
 
 	
 

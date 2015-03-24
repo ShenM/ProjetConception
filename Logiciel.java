@@ -17,5 +17,10 @@ public class Logiciel extends Document {
 	public void setGenre(GenreLogiciel genre) {
 		this.genre = genre;
 	}
+	
+	@Override
+	public int getDureeEmprunt() {
+		return 5;
+	}
 
 }
