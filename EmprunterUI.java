@@ -1,10 +1,12 @@
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import sun.awt.VariableGridLayout;
+
 
 
 public class EmprunterUI extends JPanel {
@@ -19,7 +21,7 @@ public class EmprunterUI extends JPanel {
     
     private void initUIComponents() {      
 
-        this.setLayout(new VariableGridLayout(10, 2));
+        this.setLayout(new GridLayout(10, 2));
         this.add(new JLabel("Emprunter"));
         this.add(new JLabel(""));
         

@@ -1,10 +1,12 @@
 
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import sun.awt.VariableGridLayout;
+
 
 
 public class AjouterDocUI extends JPanel{
@@ -25,7 +27,7 @@ public class AjouterDocUI extends JPanel{
     
     private void initUIComponents() {      
 
-        this.setLayout(new VariableGridLayout(10, 2));
+        this.setLayout(new GridLayout(10, 2));
         this.add(new JLabel("Ajouter un document"));
         this.add(new JLabel(""));
         

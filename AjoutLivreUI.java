@@ -1,9 +1,10 @@
 
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import sun.awt.VariableGridLayout;
 
 
 public class AjoutLivreUI extends JPanel {
@@ -20,7 +21,7 @@ public class AjoutLivreUI extends JPanel {
     }
 
     private void initUIComponents() {   
-        this.setLayout(new VariableGridLayout(6, 2));
+        this.setLayout(new GridLayout(6, 2));
         
         this.add(new JLabel("Titre :"));
         champTitre = new JTextField(30);
