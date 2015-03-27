@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 import java.awt.GridLayout;
 
@@ -5,21 +10,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-
-public class AjoutLivreUI extends JPanel {
-    
+/**
+ *
+ * @author freyssil
+ */
+public class AjouterFilmUI extends JPanel{
     private JTextField champTitre;
     private JTextField champAuteur;
+    private JTextField champRef;
     private JTextField champDate;
-    private JTextField champReference;
     private JTextField champGenre;
     private JButton button;
     
-    public AjoutLivreUI() {
+    public AjouterFilmUI() {
         initUIComponents();
     }
-
+    
     private void initUIComponents() {   
         this.setLayout(new GridLayout(6, 2));
         
@@ -34,7 +40,7 @@ public class AjoutLivreUI extends JPanel {
         this.add(new JLabel("Date :"));
         champDate = new JTextField(30);
         this.add(champDate);
-        
+                
         this.add(new JLabel("Genre :"));
         champGenre = new JTextField(30);
         this.add(champGenre);
@@ -42,5 +48,6 @@ public class AjoutLivreUI extends JPanel {
         button = new JButton("Valider");
         this.add(button);
     }
+    
     
 }
