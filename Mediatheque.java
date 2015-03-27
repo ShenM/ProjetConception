@@ -7,7 +7,7 @@ public class Mediatheque {
 	private HashMap<Integer,Abonné> abonnes;
 	private HashMap<Integer,Emprunt> emprunts;
 	
-	private int nbMaxDocLocation;
+	private int nbMaxDoc;
 
 	public Mediatheque(int nbMax){
 		documents = new HashMap<Integer,Document>();
@@ -22,10 +22,10 @@ public class Mediatheque {
 		this.emprunts = emprunts;
 	}
 	public int getNbMaxDoc() {
-		return nbMaxDocLocation;
+		return nbMaxDoc;
 	}
 	public void setNbMaxDoc(int nbMaxDoc) {
-		this.nbMaxDocLocation = nbMaxDoc;
+		this.nbMaxDoc = nbMaxDoc;
 	}
 	public void addDocument(Document doc) {
 		documents.put(doc.getRéférence(),doc);

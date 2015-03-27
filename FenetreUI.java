@@ -15,7 +15,17 @@ public class FenetreUI extends JFrame{
     private Controleur controleur;
     private JMenuBar barreMenu;
     
+    
+    private AjouterDocUI ajouterDocUI;
+    private EmprunterUI emprunterUI;
+
+    
     public FenetreUI(Controleur controleur) {
+        //paramètres généraux de la fenêtre 
+        this.setTitle("Application médiathèque");
+        this.setSize(1000, 850);
+        this.setLayout(new BorderLayout());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //initialise les paramètres de l'objet
         menuDocument = new JMenuItem[6];
@@ -29,12 +39,19 @@ public class FenetreUI extends JFrame{
         barreMenu.add(initMenuAbonne());
         barreMenu.add(initMenuHelp());
         
-        //paramétrage et affichage de la fenetre
-        this.setTitle("Application médiathèque");
-        this.setSize(1000, 850);
-        this.setLayout(new BorderLayout());
+
         this.add(barreMenu, BorderLayout.NORTH);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ajouterDocUI = new AjouterDocUI();
+        this.add(ajouterDocUI);
+        
+        
+//        emprunterUI = new EmprunterUI();
+//        this.add(emprunterUI, BorderLayout.CENTER);
+//        emprunterUI.afficherListeEmprunts();
+//        emprunterUI.afficherEmprunter();
+        
+        
+        
         this.setVisible(true);
     }
     

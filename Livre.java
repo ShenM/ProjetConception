@@ -1,13 +1,12 @@
-
-
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Livre extends Document {
 	
 	private int numISBN;
 	private GenreLitteraire genre;
 
-	public Livre(String titre, String auteur, GregorianCalendar dateParution, int numISBN, GenreLitteraire genre) {
+	public Livre(String titre, ArrayList<String> auteur, Date dateParution, int numISBN, GenreLitteraire genre) {
 		super(titre, auteur, dateParution);
 		this.numISBN= numISBN;
 		this.genre=genre;
@@ -26,4 +25,5 @@ public class Livre extends Document {
 		this.genre = genre;
 	}
 	
+
 }

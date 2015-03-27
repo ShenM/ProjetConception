@@ -1,6 +1,3 @@
-
-import java.util.GregorianCalendar;
-
 public class Application {
     
     private static Mediatheque mediatheque;
@@ -11,10 +8,6 @@ public class Application {
         mediatheque = new Mediatheque(5);
         controleur = new Controleur(mediatheque);
         
-        controleur.inscrireAbonnee("Mesrobian", "Shen");
-        
-        controleur.ajouterMusique("Swaggy", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        
-        
+        FenetreUI fen = new FenetreUI(controleur);
     }
 }
