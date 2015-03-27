@@ -1,26 +1,24 @@
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public abstract class Document {
 
 	private Emprunt emprunt;
 	private String titre;
-	private ArrayList<String> auteur;
-	private Date dateParution;
+	private String auteur;
+	private GregorianCalendar dateParution;
 	private int référence;
 	
 	
 	
 	
-	public Document(String titre, ArrayList<String> auteur,
-			Date dateParution) {
+	public Document(String titre, String auteur, GregorianCalendar dateParution) {
 		this.titre = titre;
 		this.auteur = auteur;
 		this.dateParution = dateParution;
 
 	}
 	
-	public abstract int getDureeEmprunt();
+
 	
 	
 	public String getTitre() {
@@ -37,16 +35,16 @@ public abstract class Document {
 		this.emprunt = emprunt;
 	}
 
-	public ArrayList<String> getAuteur() {
+	public String getAuteur() {
 		return auteur;
 	}
-	public void setAuteur(ArrayList<String> auteur) {
+	public void setAuteur(String auteur) {
 		this.auteur = auteur;
 	}
-	public Date getDateParution() {
+	public GregorianCalendar getDateParution() {
 		return dateParution;
 	}
-	public void setDateParution(Date dateParution) {
+	public void setDateParution(GregorianCalendar dateParution) {
 		this.dateParution = dateParution;
 	}
 	public int getRéférence() {

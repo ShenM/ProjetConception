@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-import java.util.Date;
+
+import java.util.GregorianCalendar;
 
 public class Musique extends Document {
 
 	private GenreMusical genre;
 
-	public Musique(String titre, ArrayList<String> auteur, Date dateParution, GenreMusical genre) {
+	public Musique(String titre, String auteur, GregorianCalendar dateParution, GenreMusical genre) {
 		super(titre, auteur, dateParution);	
 		this.genre=genre;
 
@@ -18,9 +18,5 @@ public class Musique extends Document {
 		this.genre = genre;
 	}
 	
-	@Override
-	public int getDureeEmprunt() {
-		return 5;
-	}
 
 }

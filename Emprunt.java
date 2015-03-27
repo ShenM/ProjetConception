@@ -2,27 +2,18 @@ import java.util.Date;
 
 
 public class Emprunt {
-	private int numEmprunt;
 	private Date dateEmprunt;
 	private Document doc;
 	private Abonné abo;
 	
 
-	public Emprunt(int numEmprunt, Document doc, Abonné abo) {
-		this.numEmprunt = numEmprunt;
+	public Emprunt( Document doc, Abonné abo) {
 		this.abo=abo;
 		this.doc = doc;
 		Date actuelle = new Date();
 		dateEmprunt = actuelle;
 	}
 
-	public int getNumEmprunt() {
-		return numEmprunt;
-	}
-
-	public void setNumEmprunt(int numEmprunt) {
-		this.numEmprunt = numEmprunt;
-	}
 
 	public Date getDateEmprunt() {
 		return dateEmprunt;

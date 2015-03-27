@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-import java.util.Date;
+
+import java.util.GregorianCalendar;
 
 public class Logiciel extends Document {
 
 	private GenreLogiciel genre;
 
-	public Logiciel(String titre, ArrayList<String> auteur, Date dateParution, GenreLogiciel genre) {
+	public Logiciel(String titre, String auteur, GregorianCalendar dateParution, GenreLogiciel genre) {
 		super(titre, auteur, dateParution);
 		this.genre=genre;
 	}
@@ -18,9 +18,5 @@ public class Logiciel extends Document {
 		this.genre = genre;
 	}
 	
-	@Override
-	public int getDureeEmprunt() {
-		return 5;
-	}
 
 }
