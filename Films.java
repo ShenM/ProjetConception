@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Films extends Document {
 
 	private GenreFilm genre;
 
-	public Films(String titre, ArrayList<String> auteur, Date dateParution, GenreFilm genre) {
+	public Films(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre) {
 		super(titre, auteur, dateParution);
 		this.genre=genre;
 	}
@@ -17,6 +16,8 @@ public class Films extends Document {
 	public void setGenre(GenreFilm genre) {
 		this.genre = genre;
 	}
+	
+
 
 	
 
