@@ -46,7 +46,7 @@ public class Controleur {
 
 	public void emprunterDocument(int ref, int numAbonne) {
 		Document doc = getMediatheque().getDocuments().get(ref);
-		Abonné abo = getAbo(numAbonne);
+		Abonné abo = getMediatheque().getAbo(numAbonne);
 			if (doc==null){
 				//INTERRACTION VUE
 				System.out.println("Ce document n'est pas référencié.");
@@ -56,32 +56,11 @@ public class Controleur {
 					System.out.println("Ce document est déjà emrpunté");
 				} else {
 					// NOTIFY / UPDATE OBSERVATEUR
-					Emprunt emprunt = new Emprunt(doc,abo);
-					doc.setEmprunt(emprunt);
-					abo.addEmprunt(emprunt);
+					getMediatheque().emprunter(doc, abo);
+					
 				}
 	
 			}
-	}
-	
-	public Abonné getAbo(int numAbo){
-		boolean trouve =false;
-		int i = 0;
-		while (!trouve){
-			if (getMediatheque().getAbonnes().get(i).getNumAbonne()==numAbo){
-				trouve=true;
-			}else{
-				i++;
-			}
-		}
-		if (trouve){
-			///INTERRACTION VUE SI NUM TROUVE
-			return getMediatheque().getAbonnes().get(i);
-		} else {
-			//INTERRACTION VUE SI NUM ABO INTROUVABLE
-			System.out.println("Num introuvable");
-			return null;
-		}
 	}
 	
 	public boolean empruntPossible(Abonné abo){
@@ -93,9 +72,6 @@ public class Controleur {
 		}
 	}
 	
-	
-
-	
 	public void libererDocument(int ref) {
 		Document doc = mediatheque.getDocuments().get(ref);
 		if (doc==null){
@@ -104,16 +80,13 @@ public class Controleur {
 			if (doc.getEmprunt()==null){
 				System.out.println("Ce document n'est pas emprunté.");
 			} else {
-				doc.getEmprunt().getAbo().setEmprunts(null);
-				doc.getEmprunt().setAbo(null);
-				doc.setEmprunt(null);
+				getMediatheque().retirerEmprunt(doc);
 			}
 		}	
 	}
 
 	public void inscrireAbonnee(String nom, String prenom) {
 		Abonné abo = new Abonné(nom, prenom);
-		abo.setNumAbonne(getMediatheque().getAbonnes().size()+1);
 		getMediatheque().addAbonne(abo);	
 	}
 	

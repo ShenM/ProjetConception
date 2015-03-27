@@ -48,9 +48,25 @@ public class Mediatheque {
 
 	public void addAbonne(Abonné abo) {
 		abonnes.put(abo.getNumAbonne(), abo);
+		abo.setNumAbonne(getAbonnes().size()+1);
 	}
 	public void deleteAbonne(Integer numAbo) {
 		abonnes.remove(numAbo);
+	}
+	public Abonné getAbo(int numAbo){
+		return getAbonnes().get(numAbo);
+	}
+	
+	public void emprunter(Document doc, Abonné abo ){
+		Emprunt emprunt = new Emprunt(doc,abo);
+		doc.setEmprunt(emprunt);
+		abo.addEmprunt(emprunt);
+	}
+	
+	public void retirerEmprunt(Document doc){
+		doc.getEmprunt().getAbo().setEmprunts(null);
+		doc.getEmprunt().setAbo(null);
+		doc.setEmprunt(null);
 	}
 	
 
