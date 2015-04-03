@@ -35,10 +35,6 @@ public class AjoutLivreUI extends JPanel {
         champDate = new JTextField(30);
         this.add(champDate);
         
-        this.add(new JLabel("Reference :"));
-        champReference = new JTextField(30);
-        this.add(champReference);
-        
         this.add(new JLabel("Genre :"));
         champGenre = new JTextField(30);
         this.add(champGenre);
