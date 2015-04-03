@@ -11,9 +11,12 @@ public class Abonné extends Observable {
 	public Abonné(String nom, String prenom){
 		emprunts = new ArrayList<Emprunt>(1);
 		setNom(nom);
-		setPrenom(prenom);
+		setPrenom(prenom);		
 	}
 
+	public Abonné(){
+		emprunts = new ArrayList<Emprunt>(1);
+	}
 	public ArrayList<Emprunt> getEmprunts() {
 		return emprunts;
 	}
@@ -46,6 +49,8 @@ public class Abonné extends Observable {
 
 	public void setNumAbonne(int numAbonne) {
 		this.numAbonne = numAbonne;
+		setChanged();
+		notifyObservers();
 	}
 
 	public String getNom() {

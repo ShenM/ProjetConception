@@ -5,7 +5,7 @@ public class Application {
     
     private static Mediatheque mediatheque;
     private static Controleur controleur;
-    private static Fenetre fenetre;
+    private static Emprunter fenetre;
     
     public static void main(String[] args){ 
         
@@ -13,9 +13,7 @@ public class Application {
         controleur = new Controleur(mediatheque);
 
         
-        controleur.inscrireAbonnee("Mesrobian", "Shen");
-        int i;
-        i=controleur.getMediatheque().getAbonnes().get(1).getNumAbonne();
+      
         
       
 
@@ -29,7 +27,6 @@ public class Application {
 
         
         System.out.println("ref : " + a);
-        System.out.println("numabo : " + i);
         
     }
 }

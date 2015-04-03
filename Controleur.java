@@ -12,7 +12,7 @@ public class Controleur {
 	
 	public Controleur(Mediatheque mediatheque){
 		this.mediatheque=mediatheque;
-        currentView = new Fenetre(this);
+        currentView = new Emprunter(this);
 	}
 	public void ajouterFilm(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre  ) {
 		int ref =100000+getMediatheque().getDocuments().size()+1;
@@ -56,12 +56,12 @@ public class Controleur {
 		Document doc = getMediatheque().getDocuments().get(ref);
 		Abonné abo = getAbo(numAbonne);
 			if (doc==null){
-				Fenetre f = (Fenetre) currentView;
-				f.dejaEmprunte();
+				
 				System.out.println("Ce document n'est pas référencié.");
 			} else {
 				if(doc.getEmprunt()!=null){
-					
+					Emprunter f = (Emprunter) currentView;
+					f.dejaEmprunte();
 					System.out.println("Ce document est déjà emrpunté");
 				} else {
 					// NOTIFY / UPDATE OBSERVATEUR
@@ -104,10 +104,13 @@ public class Controleur {
 		}	
 	}
 
-	public void inscrireAbonnee(String nom, String prenom) {
+	public Abonné inscrireAbonnee(String nom, String prenom) {
 		Abonné abo = new Abonné(nom, prenom);
-		abo.setNumAbonne(getMediatheque().getAbonnes().size()+1);
 		getMediatheque().addAbonne(abo);	
+		return abo;
+	}
+	public void addNumAbonne(Abonné abo){
+		abo.setNumAbonne(getMediatheque().getAbonnes().size());
 	}
 	
 	public Mediatheque getMediatheque() {
@@ -117,5 +120,9 @@ public class Controleur {
 		this.mediatheque = mediatheque;
 	}
 	
+	
+	public void ajouterAbonné(){
+		this.currentView = new AjouterAbo(this);
+	}
 
 }
