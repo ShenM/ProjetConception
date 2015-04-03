@@ -1,3 +1,3 @@
 public enum GenreFilm {
-	action, aventure, romantique, horreur, drame, documentaire
+	Action, Aventure, Romantique, Horreur, Drame, Documentaire
 }

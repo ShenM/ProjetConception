@@ -1,3 +1,3 @@
 public enum GenreMusical {
-	rock, pop, classique, jazz, rap, hipHop, electro
+	Rock, Pop, Classique, Jazz, Rap, HipHop, Electro
 }

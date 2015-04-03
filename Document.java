@@ -1,4 +1,6 @@
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 
 public abstract class Document {
 
@@ -15,6 +17,7 @@ public abstract class Document {
 		this.titre = titre;
 		this.auteur = auteur;
 		this.dateParution = dateParution;
+		
 
 	}
 	
@@ -53,7 +56,7 @@ public abstract class Document {
 	public void setRéférence(int référence) {
 		this.référence = référence;
 	}
-	
+
 	
 	
 

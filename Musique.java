@@ -10,6 +10,8 @@ public class Musique extends Document {
 		this.genre=genre;
 
 	}
+	
+
 	public GenreMusical getGenre() {
 		return genre;
 	}

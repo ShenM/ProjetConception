@@ -8,63 +8,60 @@ public class Controleur {
 	
 
 	private Mediatheque mediatheque;
-	private JFrame currentView;
+	private Fenetre currentView;
 	
 	public Controleur(Mediatheque mediatheque){
 		this.mediatheque=mediatheque;
         currentView = new Emprunter(this);
 	}
-	public void ajouterFilm(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre  ) {
+	public Films ajouterFilm(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre  ) {
 		int ref =100000+getMediatheque().getDocuments().size()+1;
 		Films film = new Films(titre,auteur,dateParution,genre);
 		film.setRéférence(ref);
 		getMediatheque().addDocument(film);
+		return film;
 		
 	}
-	public void ajouterMusique(String titre, String auteur, GregorianCalendar dateParution, GenreMusical genre  ) {
+	public Musique ajouterMusique(String titre, String auteur, GregorianCalendar dateParution, GenreMusical genre  ) {
 		int ref =200000+getMediatheque().getDocuments().size()+1;
 		Musique musique = new Musique(titre,auteur,dateParution,genre);
 		musique.setRéférence(ref);
 		getMediatheque().addDocument(musique);
+		return musique;
 		
 	}
-	public void ajouterLivre(String titre, String auteur, GregorianCalendar dateParution, GenreLitteraire genre, int numISBN  ) {
+	public Livre ajouterLivre(String titre, String auteur, GregorianCalendar dateParution, GenreLitteraire genre, int numISBN  ) {
 		int ref =300000+getMediatheque().getDocuments().size()+1;
 		Livre livre = new Livre(titre,auteur,dateParution,numISBN,genre);
 		livre.setRéférence(ref);
 		getMediatheque().addDocument(livre);
+		return livre;
 		
 	}
-	public void ajouterLogiciel(String titre, String auteur, GregorianCalendar dateParution, GenreLogiciel genre  ) {
+	public Logiciel ajouterLogiciel(String titre, String auteur, GregorianCalendar dateParution, GenreLogiciel genre  ) {
 		int ref =400000+getMediatheque().getDocuments().size()+1;
 		Logiciel logiciel = new Logiciel(titre,auteur,dateParution,genre);
 		logiciel.setRéférence(ref);
 		getMediatheque().addDocument(logiciel);
+		return logiciel;
 		
 	}
-	
-	
-///////////////////////// TEMPORAIRE ////////////////////////////
-	public void supprimerDocument(int ref) {
-		// TODO - implement Controleur.supprimerDocument
-		throw new UnsupportedOperationException();
-	}
-////////////////////////////////////////////////////////////////
 
 
 	public void emprunterDocument(int ref, int numAbonne) {
 		Document doc = getMediatheque().getDocuments().get(ref);
 		Abonné abo = getAbo(numAbonne);
+		Emprunter f = (Emprunter) currentView;
 			if (doc==null){
+				f.pasRéférencé();
 				
-				System.out.println("Ce document n'est pas référencié.");
 			} else {
 				if(doc.getEmprunt()!=null){
-					Emprunter f = (Emprunter) currentView;
+					
 					f.dejaEmprunte();
-					System.out.println("Ce document est déjà emrpunté");
+
 				} else {
-					// NOTIFY / UPDATE OBSERVATEUR
+
 					Emprunt emprunt = new Emprunt(doc,abo);
 					doc.setEmprunt(emprunt);
 					abo.addEmprunt(emprunt);
@@ -81,7 +78,7 @@ public class Controleur {
 		if (abo.getEmprunts().size()>=getMediatheque().getNbMaxDoc()){
 				return false;
 		} else {
-				//INTERRACTION VUE
+
 				return true;
 		}
 	}
@@ -104,13 +101,14 @@ public class Controleur {
 		}	
 	}
 
-	public Abonné inscrireAbonnee(String nom, String prenom) {
-		Abonné abo = new Abonné(nom, prenom);
+	public void inscrireAbonnee(Abonné abo) {
+		abo.setNumAbonne(getMediatheque().getAbonnes().size()+1);
 		getMediatheque().addAbonne(abo);	
-		return abo;
+		
 	}
-	public void addNumAbonne(Abonné abo){
-		abo.setNumAbonne(getMediatheque().getAbonnes().size());
+	public Abonné creerAbonne(String nom, String prenom){
+		Abonné abo = new Abonné(nom, prenom);
+		return abo;
 	}
 	
 	public Mediatheque getMediatheque() {
@@ -122,7 +120,18 @@ public class Controleur {
 	
 	
 	public void ajouterAbonné(){
+		this.currentView.dispose();
 		this.currentView = new AjouterAbo(this);
+	}
+	
+	public void ajouterDoc(){
+		this.currentView.dispose();
+		this.currentView = new AjouterDoc(this);
+	}
+	
+	public void emprunterDoc(){
+		this.currentView.dispose();
+		this.currentView = new Emprunter(this);
 	}
 
 }

@@ -13,6 +13,8 @@ public class Livre extends Document {
 		this.genre=genre;
 		
 	}
+
+	
 	public int getNumISBN() {
 		return numISBN;
 	}

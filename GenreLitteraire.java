@@ -1,3 +1,3 @@
 public enum GenreLitteraire {
-	roman, bandeDessinee, documentaire, essai, pieceDeTheatre, poésie
+	Roman, BandeDessinee, Documentaire, Essai, PieceDeTheatre, Poésie
 }

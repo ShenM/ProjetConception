@@ -26,25 +26,14 @@ import java.util.Observer;
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////FAIRE LE NOTIFY !!!!!!!!!!! ////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-
-
 public class Emprunter extends Fenetre implements Observer {
 
 	private JPanel contentPane;
 	private JTextField txtEmprunter;
 	private JTextField textReference;
 	private	JList list; 
-
+	private JLabel lblText;
+	private JLabel lblRfrence;
 
 
 	/**
@@ -68,14 +57,30 @@ public class Emprunter extends Fenetre implements Observer {
 		
 		JButton btnEmprunter = new JButton("Emprunter");
 		btnEmprunter.setEnabled(false);
-		btnEmprunter.setBounds(230, 481, 117, 25);
+		btnEmprunter.setBounds(230, 513, 117, 25);
 		
 		btnEmprunter.addActionListener(new ActionListener()
 	    {
 	      public void actionPerformed(ActionEvent e)
 	      {
-
-	    	  controleur.emprunterDocument(Integer.valueOf(textReference.getText()), Integer.valueOf(txtEmprunter.getText()));
+	    	  try{
+	    		  	Abonné abo = controleur.getAbo(Integer.valueOf(txtEmprunter.getText()));
+	    			 controleur.emprunterDocument(Integer.valueOf(textReference.getText()), Integer.valueOf(txtEmprunter.getText()));
+	    			  if (!controleur.empruntPossible(abo)){ 
+	    				  lblText.setText("Nombre maximum d'emprunt atteint.");
+	    				  lblRfrence.setEnabled(false);
+		    			  btnEmprunter.setEnabled(false);
+		    			  textReference.setEnabled(false);
+		    			  textReference.setEditable(false);
+	    				  
+	    			  }
+	    			  
+	    		  
+	    	  }catch(Exception ex){
+	    		  lblText.setText("Référence invalide.");
+	    		  textReference.setText("");
+	    	  }
+	    	  
 
 	      }});
 		
@@ -89,38 +94,46 @@ public class Emprunter extends Fenetre implements Observer {
 		
 		JLabel lblListeDesEmprunts = new JLabel("Liste des emprunts :");
 		lblListeDesEmprunts.setEnabled(false);
-		lblListeDesEmprunts.setBounds(58, 190, 146, 15);
+		lblListeDesEmprunts.setBounds(58, 222, 146, 15);
 		contentPane.add(lblListeDesEmprunts);
 		
 		list = new JList();
 		list.setEnabled(false);
 		list.setBorder(new LineBorder(new Color(0, 0, 0)));
-		list.setBounds(249, 188, 196, 162);
+		list.setBounds(249, 220, 196, 162);
 		contentPane.add(list);
 		
-		JLabel lblRfrence = new JLabel("Référence :");
+		lblRfrence = new JLabel("Référence :");
 		lblRfrence.setEnabled(false);
-		lblRfrence.setBounds(58, 423, 182, 25);
+		lblRfrence.setBounds(58, 397, 182, 25);
 		contentPane.add(lblRfrence);
 		
 		textReference = new JTextField();
 		textReference.setEnabled(false);
 		textReference.setEditable(false);
-		textReference.setBounds(249, 423, 195, 25);
-		contentPane.add(textReference);
+		textReference.setBounds(249, 397, 195, 25);
+		contentPane.add(textReference, BorderLayout.SOUTH);
 		textReference.setColumns(10);
 		
+		JLabel msgAbo = new JLabel(" ");
+		msgAbo.setBounds(166, 129, 261, 25);
+		contentPane.add(msgAbo);
+		
 		JButton btnValider = new JButton("Valider");
-		btnValider.setBounds(230, 134, 117, 25);
+		btnValider.setBounds(230, 166, 117, 25);
 		final Emprunter f = this;
 		btnValider.addActionListener(new ActionListener()
 	    {
 	      public void actionPerformed(ActionEvent e)
 	      {
 	    	  Abonné abo;
+	    	  try{
 	    	  abo =controleur.getAbo(Integer.valueOf(txtEmprunter.getText()));
-	    	  abo.addObserver(f);
+	    	  
+	    	  
 	    	  if (abo !=null ){
+	    		  msgAbo.setText("");
+	    		  abo.addObserver(f);    	 
 	    		  lblListeDesEmprunts.setEnabled(true);
 	    		  
 	    		  DefaultListModel model = new DefaultListModel();
@@ -140,12 +153,29 @@ public class Emprunter extends Fenetre implements Observer {
 	    		  }
 	    	  } else {
 	    		  txtEmprunter.setText("");
+	    		  msgAbo.setText("Numéro d'abonné introuvable.");
 	    		  lblListeDesEmprunts.setEnabled(false);
 	    		  list.setEnabled(false);
+	    	  }
+	    	  
+	    	  }catch(Exception ex){
+	    		  txtEmprunter.setText("");
+	    		  msgAbo.setText("Numéro d'abonné introuvable.");
+	    		  lblListeDesEmprunts.setEnabled(false);
+	    		  list.setEnabled(false);	    	  
 	    	  }
 	      }
 	    });
 		contentPane.add(btnValider);
+		
+		JLabel lblEmprunterUnDocument = new JLabel("Emprunter un document");
+		lblEmprunterUnDocument.setBounds(196, 12, 200, 50);
+		contentPane.add(lblEmprunterUnDocument);
+		
+		lblText = new JLabel("");
+		lblText.setBounds(98, 442, 346, 50);
+		contentPane.add(lblText);
+		
 		
 		
 		this.setTitle("Application médiathèque");
@@ -162,33 +192,22 @@ public class Emprunter extends Fenetre implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		Abonné abo =getControleur().getAbo(Integer.valueOf(txtEmprunter.getText()));
+		Abonné abo = getControleur().getAbo(Integer.valueOf(txtEmprunter.getText()));
 		DefaultListModel model = new DefaultListModel();
 		  for (Emprunt emp : abo.getEmprunts()){
 			  model.addElement(emp.getDoc().getTitre());
 		  }
 		 list.setModel(model);
+		 lblText.setText("Le document a bien été emprunté.");
 	}
 	
 	
 	public void dejaEmprunte(){
-		JFrame popup = new JFrame();
-		popup.setSize(400, 150);
-		popup.setTitle("Erreur");
-		popup.setLayout(new BorderLayout());
-		popup.add(new JLabel("Ce document a déjà été emprunté."), BorderLayout.NORTH);
-		JButton b = new JButton("Ok");
-		
-		b.addActionListener(new ActionListener()
-	    {
-	      public void actionPerformed(ActionEvent e)
-	      {
-	    	  popup.dispose();
-	    	  
-	      }
-	    });
-		popup.add(b,BorderLayout.SOUTH);
-		popup.setVisible(true);
+		lblText.setText("Ce document a déjà été emprunté.");
+	}
+	
+	public void pasRéférencé(){
+		lblText.setText("Ce document n'est pas référencé.");
 	}
 	
 }

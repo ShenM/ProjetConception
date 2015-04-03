@@ -29,8 +29,8 @@ public class Fenetre extends JFrame{
     barreMenu = new JMenuBar();
     barreMenu.add(initMenuDocument());
     barreMenu.add(initMenuAbonne());
-    barreMenu.add(initMenuHelp());
     getContentPane().add(barreMenu, BorderLayout.NORTH);
+    
 
  }
 
@@ -40,6 +40,7 @@ private JMenu initMenuDocument() {
     menu = new JMenu("Document");
           
     menuDocument[0] = new JMenuItem("Rechercher");
+    menuDocument[0].setEnabled(false);
     menuDocument[0].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,13 +54,14 @@ private JMenu initMenuDocument() {
     menuDocument[1].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //controleur.enregistrer();
+                controleur.ajouterDoc();
             }
         }
     );
     menu.add(menuDocument[1]);
     
     menuDocument[2] = new JMenuItem("Supprimer");
+    menuDocument[2].setEnabled(false);
     menuDocument[2].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,13 +75,14 @@ private JMenu initMenuDocument() {
     menuDocument[3].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //controleur.enregistrer();
+                controleur.emprunterDoc();
             }
         }
     );
     menu.add(menuDocument[3]);
     
     menuDocument[4] = new JMenuItem("Rendre");
+    menuDocument[4].setEnabled(false);
     menuDocument[4].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,6 +93,7 @@ private JMenu initMenuDocument() {
     menu.add(menuDocument[4]);
     
     menuDocument[5] = new JMenuItem("Reserver");
+    menuDocument[5].setEnabled(false);
     menuDocument[5].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +112,7 @@ private JMenu initMenuAbonne() {
     menu = new JMenu("Abonne");
           
     menuAbonne[0] = new JMenuItem("Rechercher");
+    menuAbonne[0].setEnabled(false);
     menuAbonne[0].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +132,8 @@ private JMenu initMenuAbonne() {
     );
     menu.add(menuAbonne[1]);
     
-    menuAbonne[2] = new JMenuItem("Desabonner");
+    menuAbonne[2] = new JMenuItem("Supprimer");
+    menuAbonne[2].setEnabled(false);
     menuAbonne[2].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,23 +146,6 @@ private JMenu initMenuAbonne() {
     return menu;
 }
 
-private JMenu initMenuHelp() {
-    JMenu menu;
-            
-    menu = new JMenu("Help");
-          
-    menuHelp[0] = new JMenuItem("Quitter");
-    menuHelp[0].addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //controleur.enregistrer();
-            }
-        }
-    );
-    menu.add(menuHelp[0]);
-    
-    return menu;
-}
 
 public Controleur getControleur(){
 	return this.controleur;

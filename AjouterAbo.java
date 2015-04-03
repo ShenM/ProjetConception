@@ -64,9 +64,17 @@ public class AjouterAbo extends Fenetre implements Observer {
 		    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		    	  Abonné abo = controleur.inscrireAbonnee(txtNom.getText(), textField.getText());
-		    	  abo.addObserver(ajou);
-		    	  getControleur().addNumAbonne(abo);
+		    	  
+		    	  String nom = txtNom.getText();
+		    	  String prenom = textField.getText();
+		    	  if (!nom.equals("")&&!prenom.equals("")){
+		    		  Abonné abo = controleur.creerAbonne(txtNom.getText(), textField.getText());
+			    	  abo.addObserver(ajou);
+			    	  getControleur().inscrireAbonnee(abo);
+		    	  } else {
+		    		  lblNumAbo.setText("Veuillez remplir tous les champs.");
+		    	  }
+		    	  
 
 		      }});
 	        

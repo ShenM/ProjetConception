@@ -8,7 +8,9 @@ public class Logiciel extends Document {
 	public Logiciel(String titre, String auteur, GregorianCalendar dateParution, GenreLogiciel genre) {
 		super(titre, auteur, dateParution);
 		this.genre=genre;
+
 	}
+
 
 	public GenreLogiciel getGenre() {
 		return genre;

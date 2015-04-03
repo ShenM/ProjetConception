@@ -7,7 +7,9 @@ public class Films extends Document {
 	public Films(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre) {
 		super(titre, auteur, dateParution);
 		this.genre=genre;
+		
 	}
+
 
 	public GenreFilm getGenre() {
 		return genre;

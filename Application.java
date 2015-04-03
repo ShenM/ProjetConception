@@ -11,22 +11,5 @@ public class Application {
         
         mediatheque = new Mediatheque(5);
         controleur = new Controleur(mediatheque);
-
-        
-      
-        
-      
-
-        controleur.ajouterMusique("Swaggy", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        controleur.ajouterMusique("Swag", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        controleur.ajouterMusique("Swa", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        controleur.ajouterMusique("Sw", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        controleur.ajouterMusique("S", "Shen", new GregorianCalendar(2015, 01, 12), GenreMusical.electro);
-        int a = controleur.getMediatheque().getDocuments().get(200001).getRéférence();
-
-
-        
-        System.out.println("ref : " + a);
-        
     }
 }
