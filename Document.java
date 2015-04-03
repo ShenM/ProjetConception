@@ -1,6 +1,4 @@
 import java.util.GregorianCalendar;
-import java.util.Observable;
-import java.util.Observer;
 
 public abstract class Document {
 
@@ -11,8 +9,6 @@ public abstract class Document {
 	private int référence;
 	
 	
-	
-	
 	public Document(String titre, String auteur, GregorianCalendar dateParution) {
 		this.titre = titre;
 		this.auteur = auteur;
@@ -20,9 +16,6 @@ public abstract class Document {
 		
 
 	}
-	
-
-	
 	
 	public String getTitre() {
 		return titre;

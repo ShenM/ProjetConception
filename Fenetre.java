@@ -11,7 +11,6 @@ import javax.swing.JMenuItem;
 public class Fenetre extends JFrame{
     private JMenuItem [] menuDocument;
     private JMenuItem [] menuAbonne;
-    private JMenuItem [] menuHelp;
     private Controleur controleur;
     private JMenuBar barreMenu;
     
@@ -23,7 +22,6 @@ public class Fenetre extends JFrame{
 	//initialise les paramètres de l'objet
     menuDocument = new JMenuItem[6];
     menuAbonne = new JMenuItem[3];
-    menuHelp = new JMenuItem[1];
     
     //lance l'initialisation des menus
     barreMenu = new JMenuBar();
@@ -54,7 +52,7 @@ private JMenu initMenuDocument() {
     menuDocument[1].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleur.ajouterDoc();
+                controleur.goToAjouterDoc();
             }
         }
     );
@@ -75,7 +73,7 @@ private JMenu initMenuDocument() {
     menuDocument[3].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleur.emprunterDoc();
+                controleur.goToEmprunterDoc();
             }
         }
     );
@@ -126,7 +124,7 @@ private JMenu initMenuAbonne() {
     menuAbonne[1].addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controleur.ajouterAbonné();
+                controleur.goToAjouterAbonné();
             }
         }
     );

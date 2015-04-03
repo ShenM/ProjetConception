@@ -5,22 +5,17 @@ public class Mediatheque {
 	
 	private HashMap<Integer,Document> documents;
 	private HashMap<Integer,Abonné> abonnes;
-	private HashMap<Integer,Emprunt> emprunts;
+
 	
 	private int nbMaxDocLocation;
 
 	public Mediatheque(int nbMax){
 		documents = new HashMap<Integer,Document>();
 		abonnes = new HashMap<Integer,Abonné>();
-		emprunts = new HashMap<Integer,Emprunt>();
+
 		setNbMaxDoc(nbMax);
 	}
-	public HashMap<Integer, Emprunt> getEmprunts() {
-		return emprunts;
-	}
-	public void setEmprunts(HashMap<Integer, Emprunt> emprunts) {
-		this.emprunts = emprunts;
-	}
+
 	public int getNbMaxDoc() {
 		return nbMaxDocLocation;
 	}

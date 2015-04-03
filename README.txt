@@ -16,8 +16,9 @@ Trois fonctionnalités sont disponnibles :
   3. Emprunter un document : Affiche une liste des emprunts d'un abonné avant de pouvoir en emprunter.
   
   
-  Vous créeez un abonné, des documents et vous empruntez. Le nbMax de document par abonné est définis dans 
-  la classe médiathèque en attribut (5 actuellement).
+  Vous créeez un abonné, des documents et vous empruntez. 
+  Le nbMax de document par abonné est défini dans la classe controleur qui effectue la construction 
+  de la médiathèque en attribut (5 actuellement).
   
   
 Merci !

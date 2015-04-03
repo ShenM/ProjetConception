@@ -2,7 +2,6 @@
 
 import java.util.GregorianCalendar;
 
-import javax.swing.JFrame;
 
 public class Controleur {
 	
@@ -10,12 +9,12 @@ public class Controleur {
 	private Mediatheque mediatheque;
 	private Fenetre currentView;
 	
-	public Controleur(Mediatheque mediatheque){
-		this.mediatheque=mediatheque;
+	public Controleur(){
+		this.mediatheque=new Mediatheque(5);
         currentView = new Emprunter(this);
 	}
 	public Films ajouterFilm(String titre, String auteur, GregorianCalendar dateParution, GenreFilm genre  ) {
-		int ref =100000+getMediatheque().getDocuments().size()+1;
+		int ref = 100000+getMediatheque().getDocuments().size()+1;
 		Films film = new Films(titre,auteur,dateParution,genre);
 		film.setRéférence(ref);
 		getMediatheque().addDocument(film);
@@ -23,7 +22,7 @@ public class Controleur {
 		
 	}
 	public Musique ajouterMusique(String titre, String auteur, GregorianCalendar dateParution, GenreMusical genre  ) {
-		int ref =200000+getMediatheque().getDocuments().size()+1;
+		int ref = 200000+getMediatheque().getDocuments().size()+1;
 		Musique musique = new Musique(titre,auteur,dateParution,genre);
 		musique.setRéférence(ref);
 		getMediatheque().addDocument(musique);
@@ -31,7 +30,7 @@ public class Controleur {
 		
 	}
 	public Livre ajouterLivre(String titre, String auteur, GregorianCalendar dateParution, GenreLitteraire genre, int numISBN  ) {
-		int ref =300000+getMediatheque().getDocuments().size()+1;
+		int ref = 300000+getMediatheque().getDocuments().size()+1;
 		Livre livre = new Livre(titre,auteur,dateParution,numISBN,genre);
 		livre.setRéférence(ref);
 		getMediatheque().addDocument(livre);
@@ -39,7 +38,7 @@ public class Controleur {
 		
 	}
 	public Logiciel ajouterLogiciel(String titre, String auteur, GregorianCalendar dateParution, GenreLogiciel genre  ) {
-		int ref =400000+getMediatheque().getDocuments().size()+1;
+		int ref = 400000+getMediatheque().getDocuments().size()+1;
 		Logiciel logiciel = new Logiciel(titre,auteur,dateParution,genre);
 		logiciel.setRéférence(ref);
 		getMediatheque().addDocument(logiciel);
@@ -61,7 +60,6 @@ public class Controleur {
 					f.dejaEmprunte();
 
 				} else {
-
 					Emprunt emprunt = new Emprunt(doc,abo);
 					doc.setEmprunt(emprunt);
 					abo.addEmprunt(emprunt);
@@ -85,7 +83,7 @@ public class Controleur {
 	
 	
 
-	
+	//Pas eu le temps de faire l'interface
 	public void libererDocument(int ref) {
 		Document doc = mediatheque.getDocuments().get(ref);
 		if (doc==null){
@@ -100,7 +98,7 @@ public class Controleur {
 			}
 		}	
 	}
-
+		////////////////////////////////////////
 	public void inscrireAbonnee(Abonné abo) {
 		abo.setNumAbonne(getMediatheque().getAbonnes().size()+1);
 		getMediatheque().addAbonne(abo);	
@@ -119,17 +117,17 @@ public class Controleur {
 	}
 	
 	
-	public void ajouterAbonné(){
+	public void goToAjouterAbonné(){
 		this.currentView.dispose();
 		this.currentView = new AjouterAbo(this);
 	}
 	
-	public void ajouterDoc(){
+	public void goToAjouterDoc(){
 		this.currentView.dispose();
 		this.currentView = new AjouterDoc(this);
 	}
 	
-	public void emprunterDoc(){
+	public void goToEmprunterDoc(){
 		this.currentView.dispose();
 		this.currentView = new Emprunter(this);
 	}
