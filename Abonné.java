@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Abonné {
+public class Abonné extends Observable {
 
 	private ArrayList<Emprunt> emprunts;
 	private int numAbonne;
@@ -23,7 +23,18 @@ public class Abonné {
 	}
 	public void addEmprunt(Emprunt emprunt){
 		emprunts.add(emprunt);
+		setChanged();
+		notifyObservers();
 	}
+	
+	public void ajouterObserver(Observer o){
+		addObserver(o);
+	}
+	
+	public void supprimerObserver(Observer o){
+		deleteObserver(o);
+	}
+	
 	
 	public void removeEmprunts(Emprunt emprunt){
 		emprunts.remove(emprunt);

@@ -14,6 +14,8 @@ public class FenetreUI extends JFrame{
     private JMenuItem [] menuHelp;
     private Controleur controleur;
     private JMenuBar barreMenu;
+    private AjouterDocUI ajouterDocUI;
+    private EmprunterUI empruntUI;
     
     public FenetreUI(Controleur controleur) {
         
@@ -36,6 +38,12 @@ public class FenetreUI extends JFrame{
         this.add(barreMenu, BorderLayout.NORTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        
+//        ajouterDocUI = new AjouterDocUI();
+//        this.add(ajouterDocUI);
+        
+        empruntUI = new EmprunterUI();
+        this.add(empruntUI);
     }
     
     private JMenu initMenuDocument() {
